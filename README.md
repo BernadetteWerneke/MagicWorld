@@ -20,11 +20,9 @@ Test & Behebung von Fehlern und unerwartetem Verhalten, um sicherzustellen,
 • Text, der in der Konsole erscheint, soll unterhaltsam & informativ sein.
 • Phasen: Planung, Coding, Test, Debugging, Redesign
 
-
-
-
-
-
+<img width="423" alt="Bildschirmfoto_2023-10-05_um_13 53 48-removebg-preview" src="https://github.com/BernadetteWerneke/MagicWorld/assets/120725476/c33e11ea-f02f-41a2-b81c-852eab367d71">
+<img width="479" alt="Bildschirmfoto 2023-10-05 um 13 54 35" src="https://github.com/BernadetteWerneke/MagicWorld/assets/120725476/07b08209-c7b4-4dd8-9ac7-4278420ab655">
+<img width="890" alt="Bildschirmfoto 2023-10-05 um 13 58 52" src="https://github.com/BernadetteWerneke/MagicWorld/assets/120725476/6a2210be-6f81-416b-ba2b-9d7d5704cd27">
 
 ## Die Geschichte
 Willkommen in der magischen Welt von drei Zauberinnen und einem düsteren Schurken!
