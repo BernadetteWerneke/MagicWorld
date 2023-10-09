@@ -33,7 +33,7 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
         for (i in 0 until alleHelden.size) {
             if (alleHelden[i].heilPK <= 0) {
                 println("${alleHelden[i].name} ist tot.")
-                alleHelden.remove(alleHelden[i])              //TODO: prüfen, ob funktioniert!!!!!!!!!!!!!!!!
+                alleHelden.remove(alleHelden[i])
             }
         }
 
@@ -48,6 +48,10 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
 
             try {
                 inputHeld = readln().toInt()
+
+                //check, ob Spiel vom Spieler angebrochen werden will
+                checkSpielAbbrechen(inputHeld)
+
                 //check auf gültige Eingabe der Zahl im Range
                 if (inputHeld < 1 || inputHeld > 3) {
                     println("Gib eine gültige Zahl zwischen 1 und 3 ein.")
@@ -60,6 +64,15 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
                 println("Gib eine gültige Zahl ein. Sonst kann das Spiel nicht weitergehen!")
                 heldWaehlen()
             }
+    }
+
+    //check, ob das Spiel vom Spieler selbst abgebrochen werden soll (Eingabe der Zahl 99)
+    //nur möglich bei Eingabe Heldin und Eingabe Zauber
+    private fun checkSpielAbbrechen(input: Int) {
+        if (input == 99) {
+            println("Spiel wurde vom Spieler abgebrochen. Das Spiel ist beendet.")
+            System.exit(0)
+        }
     }
 
 
@@ -94,11 +107,16 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
 
         try {
             auswahlZauber = readln().toInt()
+
+            //check Abbruch durch den Spieler
+            checkSpielAbbrechen(auswahlZauber)
+
             //check auf gültige Eingabe im Range
             if (auswahlZauber < 1 || auswahlZauber > 4) {
                 println("Gib eine gültige Zahl zwischen 1 und 4 ein.")
                 zauberAuswaehlen()
             }
+
         } catch (ex: Exception) {
             println("Gib eine der obigen Zahlen ein. Sonst geht das Spiel nicht weiter!")
             zauberAuswaehlen()

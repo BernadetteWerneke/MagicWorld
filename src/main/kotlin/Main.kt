@@ -40,5 +40,7 @@ val arena:Arena = Arena(zauberin, hexe, hausdrache, entgegner)
         }
         arena.heldWaehlen()
         arena.zauberAuswaehlen()
+
+
     }
 }
