@@ -14,6 +14,8 @@ var alleGegner:MutableList<Gegner> = mutableListOf(helfer, entgegner)
 
 var spielen = true
 var eineRundeAussetzen = false
+var heldSetztWiederEin: MutableList<Helden> = mutableListOf()
+
 
 fun main() {
 val arena:Arena = Arena(zauberin, hexe, hausdrache, entgegner)
@@ -22,9 +24,9 @@ val arena:Arena = Arena(zauberin, hexe, hausdrache, entgegner)
     arena.vorstellung()
 
     //Spielrunde
-    while (spielen){
+    while (spielen ){
 
-        if(zauberin.heilPK <=0 && hexe.heilPK <=0 && hausdrache.heilPK <=0){
+        if(alleHelden.isEmpty()){
             println("Alle Zauberinnen haben verloren. Sie kämpften verzweifelt,\n" +
                     "aber sie konnten nichts ausrichten. Snape und Lestrange \n" +
                     "triumphierten und übernahmen die Welt. Spielende!")
@@ -40,7 +42,5 @@ val arena:Arena = Arena(zauberin, hexe, hausdrache, entgegner)
         }
         arena.heldWaehlen()
         arena.zauberAuswaehlen()
-
-
     }
 }

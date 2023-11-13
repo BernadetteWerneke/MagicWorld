@@ -5,6 +5,7 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
 
     var inputHeld: Int = 0
     var auswahlZauber: Int = 0
+    var tot: Boolean = false
 
     var beutel: Beutel = Beutel()
 
@@ -27,19 +28,12 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
 
     //Heldin auswählen
     fun heldWaehlen() {
-        println("Welche Heldin zaubert?")
         var a = 1
-        //check: falls heilPK <=0, dann Held tot + aus Liste entfernen
-        for (i in 0 until alleHelden.size) {
-            if (alleHelden[i].heilPK <= 0) {
-                println("${alleHelden[i].name} ist tot.")
-                alleHelden.remove(alleHelden[i])
-            }
-        }
+
+        println("Welche Heldin zaubert?")
 
         //wählbare Heldinnen anzeigen:
 
-            //Heldinnen anzeigen
             for (i in 0..alleHelden.size - 1) {
                 println("$a für ${alleHelden[i].name} (${alleHelden[i].heilPK} PK)")
                 a++
@@ -64,6 +58,14 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
                 println("Gib eine gültige Zahl ein. Sonst kann das Spiel nicht weitergehen!")
                 heldWaehlen()
             }
+
+
+        //Held wieder hinzufügen nach 1 Runde aussetzen
+        if (eineRundeAussetzen) {
+            alleHelden = heldSetztWiederEin
+            println("Liste alleHelden = heldSetztWiederEin: $alleHelden")//Held zu Liste hinzufügen nahc ausgestzter Runde
+            eineRundeAussetzen = false
+        }
     }
 
     //check, ob das Spiel vom Spieler selbst abgebrochen werden soll (Eingabe der Zahl 99)
@@ -74,6 +76,7 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
             System.exit(0)
         }
     }
+
 
 
     fun zauberAuswaehlen() {
@@ -171,14 +174,27 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
             }
         }
 
+
+
+        //check: falls heilPK <=0, dann Held tot + aus Liste entfernen
+        for (i in 0 until alleHelden.size) {
+            if (alleHelden[i].heilPK <= 0) {
+                println("${alleHelden[i].name} ist tot.")
+                println("       +++")
+                alleHelden.removeAt(i)
+                tot = true
+            }
+        }
+
+        if (!tot) {
         //Gegner mit Zufallsangriff auf random-Helden
-        entgegner.zufallsAngriff(entgegner, alleHelden.random())
+            entgegner.zufallsAngriff(entgegner, alleHelden.random())
+            tot = false
+        }
 
         //Beutel nutzen, wenn Helden unter 250 PK
-        for (iZauber in 0..alleHelden.size - 1) {
-            if (alleHelden[iZauber].heilPK in 0..250) {
-                beutel.beutelNutzen(alleHelden[iZauber], alleHelden)
-            }
+        if (alleHelden[inputHeld-1].heilPK in 0..250 && entgegner.heilPK > 0) {
+            beutel.beutelNutzen(alleHelden[inputHeld-1], alleHelden)
         }
     }
 

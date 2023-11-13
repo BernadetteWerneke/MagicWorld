@@ -1,7 +1,7 @@
 import java.awt.List
 import java.lang.Exception
 
-class Beutel{
+class Beutel {
 
     var beutelInhalt: MutableList<String> = mutableListOf("Heiltrank1", "Heiltrank2", "Heiltrank3", "1xVitamine")
 
@@ -9,30 +9,32 @@ class Beutel{
     var vitamine = true
     var heiltrankGenutzt = false
 
-    //var eineRundeAussetzen = false
+    fun beutelNutzen(Held: Helden, alleHelden: MutableList<Helden>) {
 
-        fun beutelNutzen(Held: Helden, alleHelden: MutableList<Helden>) {
+        var inputBeutelInhalt = 0
 
-            var inputBeutelInhalt = 0
+        //Beutel wird nur angeboten, wenn noch etwas drin ist
+        if (beutelInhalt.isNotEmpty()) {
 
 
             println("${Held.name} ist sehr schwach und holt den magischen Beutel hervor.")
             println("Inhalt: ${this.beutelInhalt}")                     //full: "Heiltrank1", "Heiltrank2", "Heiltrank3", "1xVitamine"
-            println("1 Heiltrank aus Beutel nutzen")
-            println("2 Vitamine aus Beutel nutzen")
+
+            for (i in beutelInhalt.indices) {                           //listet Beutelinhalt auf mit Nummerierung
+                println(" $i ${beutelInhalt[i]} nutzen")
+            }
             println("Wähle aus dem Beutel eines der Dinge:")
 
             try {
-                inputBeutelInhalt =
-                    readln().toInt()
-            } catch (ex: Exception){
+                inputBeutelInhalt = readln().toInt()
+            } catch (ex: Exception) {
                 println("Fehlerhafte Eingabe. Die Auswahl wird zufällig ermittelt und dann geht es weiter...")
                 inputBeutelInhalt = (1..2).random()
             }
 
             when (inputBeutelInhalt) {
-                1 -> {
-                    //Heiltrank trinken
+                0 -> {
+                    //Heiltrank 1 trinken
                     if (iHeiltrank in 1..3) {
                         println("Heiltrank wird getrunken.")
                         //heilPK um 50% erhöhen
@@ -42,30 +44,70 @@ class Beutel{
                         beutelInhalt.removeAt(0)
                         iHeiltrank++
                         heiltrankGenutzt = true
+                    }
+                }
+
+                1 -> {
+                    //Heiltrank 2 trinken
+                    if (iHeiltrank in 1..3) {
+                        println("Heiltrank wird getrunken.")
+                        //heilPK um 60% erhöhen
+                        Held.heilPK = ((Held.heilPK * 1.6).toInt())
+                        println("Kraft von ${Held.name} erhöht sich um 60% auf ${Held.heilPK} PK.")
+                        beutelInhalt.removeAt(inputBeutelInhalt)
+                        iHeiltrank++
+                        heiltrankGenutzt = true
+                    }
+                }
+
+                2 -> {
+                    //Heiltrank 3 trinken
+                    if (iHeiltrank in 1..3) {
+                        println("Heiltrank wird getrunken.")
+                        //heilPK um 70% erhöhen
+                        Held.heilPK = ((Held.heilPK * 1.7).toInt())
+                        println("Kraft von ${Held.name} erhöht sich um 70% auf ${Held.heilPK} PK.")
+                        //Trank aus Liste entfernen
+                        beutelInhalt.removeAt(inputBeutelInhalt)
+                        iHeiltrank++
+                        heiltrankGenutzt = true
                     } else {
                         println("Kein Heiltrank mehr im Beutel!")
                     }
                     println("****************************************************")
                 }
 
-                2 -> {
-                    //Vitamintrank trinken, heilPK plus 10%, jemand aus Team fällt aus
+                3 -> {
+                    //Vitamintrank trinken, heilPK plus 10%
                     if (vitamine) {
                         Held.heilPK = ((Held.heilPK * 1.1).toInt())
                         println("Kraft von ${Held.name} wird um 10% erhöht auf ${Held.heilPK}!")
                         vitamine = false
-                        beutelInhalt.removeLast()
-                        println("Dafür setzt ein zufällig gewählter Held aus.")
+                        beutelInhalt.removeAt(inputBeutelInhalt)
+
+
+                        //ein zufälliger Held fällt eine Runde aus
+                        println("Dafür setzt ein Held zufällig aus.")
+                        heldSetztWiederEin.clear()
+                        heldSetztWiederEin += alleHelden
+
+                        println("Liste HeldSetztWieder ein: $heldSetztWiederEin")
+
                         val heldFaelltAus = alleHelden.random()
-                        println("${heldFaelltAus.name} setzt eine Runde aus.")
-                        //randomHeld für 1 Runde entfernen
-                        //alleHelden.remove(heldFaelltAus)
+                        println("dieser Held fällt aus: $heldFaelltAus")
+
+                        //println("Der Zufall wählt ${Held.name} und sie setzt nun eine Runde aus.")
+                        println("Der Zufall wählt ${heldFaelltAus.name} und sie setzt nun eine Runde aus.")
+                        alleHelden.remove(heldFaelltAus)
+                        println("Liste alle Helden in Aussetzrunde: $alleHelden")//Held setzt aus
+
                         eineRundeAussetzen = true
-                    }else{
+                    } else {
                         println("Vitamine sind aufgebraucht.")
-                        }
-                        println("****************************************************")
                     }
+                    println("****************************************************")
                 }
             }
         }
+    }
+}
