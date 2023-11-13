@@ -5,7 +5,6 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
 
     var inputHeld: Int = 0
     var auswahlZauber: Int = 0
-    var tot: Boolean = false
 
     var beutel: Beutel = Beutel()
 
@@ -173,26 +172,40 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
                 hausdrache.aguamenti(entgegner)
             }
         }
+//-----------------------------------------------------------------------------------------
+        for (i in 0 until alleHelden.size) {
+            if (alleHelden[i].heilPK <= 0) {
+                println("${alleHelden[i].name} ist tot.")
+                println("      + + +")
 
+                alleHelden.removeAt(i)
+                println("Liste nach Heldentot: $alleHelden")        //todo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                break
+            }
+        }
+
+
+        //Gegner mit Zufallsangriff auf random-Helden
+        entgegner.zufallsAngriff(entgegner, alleHelden.random())
 
 
         //check: falls heilPK <=0, dann Held tot + aus Liste entfernen
         for (i in 0 until alleHelden.size) {
             if (alleHelden[i].heilPK <= 0) {
                 println("${alleHelden[i].name} ist tot.")
-                println("       +++")
+                println("      + + +")
+
                 alleHelden.removeAt(i)
-                tot = true
+                println("Liste nach Heldentot: $alleHelden")        //todo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                break
             }
         }
 
-        if (!tot) {
-        //Gegner mit Zufallsangriff auf random-Helden
-            entgegner.zufallsAngriff(entgegner, alleHelden.random())
-            tot = false
-        }
 
-        //Beutel nutzen, wenn Helden unter 250 PK
+
+
+
+        //Beutel nutzen, wenn eingegebener Held unter 250 PK
         if (alleHelden[inputHeld-1].heilPK in 0..250 && entgegner.heilPK > 0) {
             beutel.beutelNutzen(alleHelden[inputHeld-1], alleHelden)
         }
