@@ -72,7 +72,7 @@ class Beutel {
                         iHeiltrank++
                         heiltrankGenutzt = true
                     } else {
-                        println("Kein Heiltrank mehr im Beutel!")
+                        println("Kein Heiltrank2 mehr im Beutel!")
                     }
                     println("****************************************************")
                 }
@@ -85,21 +85,16 @@ class Beutel {
                         vitamine = false
                         beutelInhalt.removeAt(inputBeutelInhalt)
 
-
                         //ein zufälliger Held fällt eine Runde aus
                         println("Dafür setzt ein Held zufällig aus.")
                         heldSetztWiederEin.clear()
                         heldSetztWiederEin += alleHelden
 
-                        println("Liste HeldSetztWieder ein: $heldSetztWiederEin")
-
                         val heldFaelltAus = alleHelden.random()
-                        println("dieser Held fällt aus: $heldFaelltAus")
 
                         //println("Der Zufall wählt ${Held.name} und sie setzt nun eine Runde aus.")
-                        println("Der Zufall wählt ${heldFaelltAus.name} und sie setzt nun eine Runde aus.")
+                        println("Der Zufall wählt ${heldFaelltAus.name}.")
                         alleHelden.remove(heldFaelltAus)
-                        println("Liste alle Helden in Aussetzrunde: $alleHelden")//Held setzt aus
 
                         eineRundeAussetzen = true
                     } else {

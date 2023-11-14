@@ -26,7 +26,7 @@ val arena:Arena = Arena(zauberin, hexe, hausdrache, entgegner)
     //Spielrunde
     while (spielen ){
 
-        if(alleHelden.isEmpty()){
+        if(alleHelden.isEmpty() && !eineRundeAussetzen){                            //todo !!!!!!!!!!!!!!check
             println("Alle Zauberinnen haben verloren. Sie kämpften verzweifelt,\n" +
                     "aber sie konnten nichts ausrichten. Snape und Lestrange \n" +
                     "triumphierten und übernahmen die Welt. Spielende!")
