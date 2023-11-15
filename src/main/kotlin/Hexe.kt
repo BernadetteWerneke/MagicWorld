@@ -8,7 +8,12 @@ class Hexe(name:String, heilPK:Int):Helden(name, heilPK,){
         println("Zauberin ${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
         println("Gegner: ${gegner.name} (${gegner.heilPK} PK)")
         gegner.heilPK -= this.schadenPK
-        println("Gegner verliert. Neue PK Gegener: ${gegner.heilPK}")
+        println("Gegner verliert.")
+        if (gegner.heilPK > 0) {
+            println("Neue PK Schurke: ${gegner.heilPK}")
+        } else {
+            println("Der Schurke ist tot. + + +")
+        }
         println("------------------------------------------------------")}
 
     //Finite Incantatem (Schutzzauber)
@@ -18,7 +23,12 @@ class Hexe(name:String, heilPK:Int):Helden(name, heilPK,){
         println("Zauberin ${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
         println("Gegner: ${gegner.name} (${gegner.heilPK} PK)")
         gegner.heilPK -= schadenPK
-        println("Gegner verliert. Neue PK Gegener: ${gegner.heilPK}")
+        println("Gegner verliert.")
+        if (gegner.heilPK > 0) {
+            println("Neue PK Schurke: ${gegner.heilPK}")
+        } else {
+            println("Der Schurke ist tot. + + +")
+        }
         println("------------------------------------------------------")}
 
     //Expecto Patronum (Schutzzauber)
@@ -28,7 +38,12 @@ class Hexe(name:String, heilPK:Int):Helden(name, heilPK,){
         println("Zauberin ${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
         println("Gegner: ${gegner.name} (${gegner.heilPK} PK)")
         gegner.heilPK -= this.schadenPK
-        println("Gegner verliert. Neue PK Gegener: ${gegner.heilPK}")
+        println("Gegner verliert.")
+        if (gegner.heilPK > 0) {
+            println("Neue PK Schurke: ${gegner.heilPK}")
+        } else {
+            println("Der Schurke ist tot. + + +")
+        }
         println("------------------------------------------------------")}
 
     //Waddiwasi (Schleuderzauber)
@@ -38,7 +53,12 @@ class Hexe(name:String, heilPK:Int):Helden(name, heilPK,){
         println("Zauberin ${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
         println("Gegner: ${gegner.name} (${gegner.heilPK} PK)")
         gegner.heilPK -= this.schadenPK
-        println("Gegner verliert. Neue PK Gegener: ${gegner.heilPK}")
+        println("Gegner verliert.")
+        if (gegner.heilPK > 0) {
+            println("Neue PK Schurke: ${gegner.heilPK}")
+        } else {
+            println("Der Schurke ist tot. + + +")
+        }
         println("------------------------------------------------------")
     }
 

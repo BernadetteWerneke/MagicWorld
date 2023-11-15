@@ -28,7 +28,7 @@ class Entgegner(name: String, heilPK: Int) : Gegner(name, heilPK) {
 
                 6 -> { avis(helden) }
             }
-            if (helferCasten && !keinHelferMehr) {                  //weitere Zauberattacke von Helfer, nur 1x pro Kampf
+            if (helferCasten && !keinHelferMehr) {                  //weitere total zufällige Zauberattacke von Helfer, nur 1x pro Kampf
                 helfer.zufallsAngriff(helfer, helden)
                 keinHelferMehr = true
             }
@@ -42,9 +42,9 @@ class Entgegner(name: String, heilPK: Int) : Gegner(name, heilPK) {
         this.schadenPK = (200..300).random()
         var zauberName = "Petrificus Totalus (Versteinerungszauber)"
         println("${this.name} (${this.heilPK} PK) zaubert mit $zauberName (${this.schadenPK} SchadenPK).")
-        println("gegen Held ${helden.name} (${helden.heilPK} PK)")
+        println("gegen Zauberin ${helden.name} (${helden.heilPK} PK)")
         helden.heilPK -= schadenPK
-        println("Held verliert. Neue PK Held: ${helden.heilPK}")
+        println("Zauberin verliert. Neue PK Zauberin: ${helden.heilPK}")
         println("------------------------------------------------------")
     }
 
@@ -53,9 +53,9 @@ class Entgegner(name: String, heilPK: Int) : Gegner(name, heilPK) {
         this.schadenPK = (180..250).random()
         var zauberName = "Stupor (Schockzauber)"
         println("${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
-        println("gegen Held ${helden.name} (${helden.heilPK} PK)")
+        println("gegen Zauberin ${helden.name} (${helden.heilPK} PK)")
         helden.heilPK -= schadenPK
-        println("Held verliert. Neue PK Held: ${helden.heilPK}")
+        println("Zauberin verliert. Neue PK Zauberin: ${helden.heilPK}")
         println("------------------------------------------------------")
     }
 
@@ -64,9 +64,9 @@ class Entgegner(name: String, heilPK: Int) : Gegner(name, heilPK) {
         this.schadenPK = (280..330).random()
         var zauberName = "Confringo (Sprengzauber)"
         println("${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
-        println("gegen Held ${helden.name} (${helden.heilPK} PK)")
+        println("gegen Zauberin ${helden.name} (${helden.heilPK} PK)")
         helden.heilPK -= schadenPK
-        println("Held verliert. Neue PK Held: ${helden.heilPK}")
+        println("Zauberin verliert. Neue PK Zauberin: ${helden.heilPK}")
         println("------------------------------------------------------")
     }
 
@@ -75,9 +75,9 @@ class Entgegner(name: String, heilPK: Int) : Gegner(name, heilPK) {
         this.schadenPK = (50..280).random()
         var zauberName = "Sectumsempra (Verwundungszauber)"
         println("${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
-        println("gegen Held ${helden.name} (${helden.heilPK} PK)")
+        println("gegen Zauberin ${helden.name} (${helden.heilPK} PK)")
         helden.heilPK -= schadenPK
-        println("Held verliert. Neue PK Held: ${helden.heilPK}")
+        println("Zauberin verliert. Neue PK Zauberin: ${helden.heilPK}")
         println("------------------------------------------------------")
     }
 
@@ -86,9 +86,9 @@ class Entgegner(name: String, heilPK: Int) : Gegner(name, heilPK) {
         this.schadenPK = (20..80).random()
         var zauberName = "Confundo (Verwirrungszauber)"
         println("${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
-        println("gegen Held ${helden.name} (${helden.heilPK} PK)")
+        println("gegen Zauberin ${helden.name} (${helden.heilPK} PK)")
         helden.heilPK -= schadenPK
-        println("Held verliert. Neue PK Held: ${helden.heilPK}")
+        println("Zauberin verliert. Neue PK Zauberin: ${helden.heilPK}")
         println("------------------------------------------------------")
     }
 
@@ -97,9 +97,9 @@ class Entgegner(name: String, heilPK: Int) : Gegner(name, heilPK) {
         this.schadenPK = (280..320).random()
         var zauberName = "Avis (Vogel-Heraufbeschwörungszauber)"
         println("${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
-        println("gegen Held ${helden.name} (${helden.heilPK} PK)")
+        println("gegen Zauberin ${helden.name} (${helden.heilPK} PK)")
         helden.heilPK -= schadenPK
-        println("Held verliert. Neue PK Held: ${helden.heilPK}")
+        println("Zauberin verliert. Neue PK Zauberin: ${helden.heilPK}")
         println("------------------------------------------------------")
     }
 }

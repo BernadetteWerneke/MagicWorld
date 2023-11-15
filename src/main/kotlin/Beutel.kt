@@ -93,10 +93,12 @@ class Beutel {
                         val heldFaelltAus = alleHelden.random()
 
                         //println("Der Zufall wählt ${Held.name} und sie setzt nun eine Runde aus.")
-                        println("Der Zufall wählt ${heldFaelltAus.name}.")
-                        alleHelden.remove(heldFaelltAus)
+                        if (alleHelden.size >1) {
+                            println("Der Zufall wählt ${heldFaelltAus.name}.")
+                            alleHelden.remove(heldFaelltAus)
 
-                        eineRundeAussetzen = true
+                            eineRundeAussetzen = true
+                        }
                     } else {
                         println("Vitamine sind aufgebraucht.")
                     }

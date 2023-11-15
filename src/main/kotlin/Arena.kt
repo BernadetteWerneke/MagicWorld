@@ -29,7 +29,7 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
     fun heldWaehlen() {
         var a = 1
 
-        println("Welche Heldin zaubert?")
+        println("Welche Zauberin zaubert?")
 
         //wählbare Heldinnen anzeigen:
 
@@ -62,7 +62,6 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
         //Held wieder hinzufügen nach 1 Runde aussetzen
         if (eineRundeAussetzen) {
             alleHelden = heldSetztWiederEin
-            println("Liste alleHelden = heldSetztWiederEin: $alleHelden")//Held zu Liste hinzufügen nahc ausgestzter Runde
             eineRundeAussetzen = false
         }
     }
@@ -173,6 +172,7 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
             }
         }
 //-----------------------------------------------------------------------------------------
+        //check: falls heilPK <=0, dann Held tot + aus Liste entfernen
         for (i in 0 until alleHelden.size) {
             if (alleHelden[i].heilPK <= 0) {
                 println("${alleHelden[i].name} ist tot.")
@@ -190,6 +190,7 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
                 beutel.beutelNutzen(alleHelden[inputHeld - 1], alleHelden)
             }
         }
+
 
         //Gegner mit Zufallsangriff auf random-Helden
         entgegner.zufallsAngriff(entgegner, alleHelden.random())

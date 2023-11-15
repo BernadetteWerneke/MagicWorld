@@ -8,7 +8,12 @@ class Zauberin (name:String, heilPK:Int):Helden(name, heilPK,) {
         println("Zauberin ${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
         println("Gegner: ${gegner.name} (${gegner.heilPK} PK)")
         gegner.heilPK -= schadenPK
-        println("Gegner verliert. Neue PK Gegner: ${gegner.heilPK}")
+        println("Gegner verliert.")
+        if (gegner.heilPK > 0) {
+            println("Neue PK Schurke: ${gegner.heilPK}")
+        } else {
+            println("Der Schurke ist tot. + + +")
+        }
         println("------------------------------------------------------")
     }
 
@@ -19,7 +24,12 @@ class Zauberin (name:String, heilPK:Int):Helden(name, heilPK,) {
         println("Zauberin ${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
         println("Gegner: ${gegner.name} (${gegner.heilPK} PK)")
         gegner.heilPK -= schadenPK
-        println("Gegner verliert. Neue PK Gegner: ${gegner.heilPK}")
+        println("Gegner verliert.")
+        if (gegner.heilPK > 0) {
+                println("Neue PK Schurke: ${gegner.heilPK}")
+        } else {
+            println("Der Schurke ist tot. + + +")
+        }
         println("------------------------------------------------------")
     }
 
@@ -30,7 +40,12 @@ class Zauberin (name:String, heilPK:Int):Helden(name, heilPK,) {
         println("Zauberin ${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
         println("Gegner: ${gegner.name} (${gegner.heilPK} PK)")
         gegner.heilPK -= schadenPK
-        println("Gegner verliert. Neue PK Gegner: ${gegner.heilPK}")
+        println("Gegner verliert.")
+        if (gegner.heilPK > 0) {
+            println("Neue PK Schurke: ${gegner.heilPK}")
+        } else {
+            println("Der Schurke ist tot. + + +")
+        }
         println("------------------------------------------------------")
     }
 
@@ -41,7 +56,12 @@ class Zauberin (name:String, heilPK:Int):Helden(name, heilPK,) {
         println("Zauberin ${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
         println("Gegner: ${gegner.name} (${gegner.heilPK} PK)")
         gegner.heilPK -= schadenPK
-        println("Gegner verliert. Neue PK Gegner: ${gegner.heilPK}")
+        println("Gegner verliert.")
+        if (gegner.heilPK > 0) {
+            println("Neue PK Schurke: ${gegner.heilPK}")
+        } else {
+            println("Der Schurke ist tot. + + + ")
+        }
         println("------------------------------------------------------")}
 
 }
