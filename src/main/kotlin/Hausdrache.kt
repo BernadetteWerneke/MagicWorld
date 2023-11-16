@@ -1,6 +1,6 @@
 class Hausdrache(name:String, heilPK:Int):Helden(name, heilPK){
 
-    //Zauber-Aktionen:
+    //Zauber-Aktionen von Ursula:
     //Avis (Vogelheraufbeschwörungszauber)
      fun avis(gegner: Gegner){
         this.schadenPK=(200..250).random()

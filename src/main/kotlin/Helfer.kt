@@ -1,6 +1,7 @@
 class Helfer(name:String, heilPK:Int):Gegner(name, heilPK,) {
 
-    //Aufruf Helfer gecastet
+    //Aufruf des Helfers
+    //Auswahl zufällig des Angriffs
     fun zufallsAngriff(helfer:Gegner, helden:Helden){
         var aktionsListe: List<Int> = listOf(1,2,3,4)
         var aktion = aktionsListe.random()
@@ -12,7 +13,7 @@ class Helfer(name:String, heilPK:Int):Gegner(name, heilPK,) {
         }
     }
 
-    //Zauber-Aktionen:
+    //einzelne Zauber-Aktionen + ihre Auswirkungen:
     //Expecto Patronum (Schutzzauber)
     fun expectoPatronum(helden: Helden){
         this.schadenPK=(200..300).random()

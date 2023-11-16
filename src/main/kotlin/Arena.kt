@@ -3,12 +3,14 @@ import java.lang.Exception
 open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdrache,
                  var entgegner: Entgegner) {
 
+    //Eingabedaten des User
     var inputHeld: Int = 0
     var auswahlZauber: Int = 0
 
+    //Heiltrankbeutel der Zauberinnen
     var beutel: Beutel = Beutel()
 
-
+    //Lieblingszauber der einzelnen Zauberinnen
     var zauberListe: MutableList<String> = mutableListOf(
         "Petrificus Totalus (Versteinerungszauber)",
         "Avis (Vogelheraufbeschwörungszauber)", "Expelliarmus (Entwaffnungszauber)", "Incendio (Feuerzauber)"
@@ -25,20 +27,22 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
     )
 
 
-    //Heldin auswählen
+    //Zauberin auswählen:
     fun heldWaehlen() {
         var a = 1
 
         println("Welche Zauberin zaubert?")
 
-        //wählbare Heldinnen anzeigen:
+        //mögliche Zauberinnen anzeigen aus Heldenteam:
 
             for (i in 0..alleHelden.size - 1) {
                 println("$a für ${alleHelden[i].name} (${alleHelden[i].heilPK} PK)")
                 a++
             }
+
             println("Gib eine Zahl ein:")
 
+            //Eingabefehler des Users abfangen
             try {
                 inputHeld = readln().toInt()
 
@@ -59,7 +63,7 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
             }
 
 
-        //Held wieder hinzufügen nach 1 Runde aussetzen
+        //Held wieder hinzufügen nach 1 Runde aussetzen (Vitamintrank trinken)
         if (eineRundeAussetzen) {
             alleHelden = heldSetztWiederEin
             eineRundeAussetzen = false
@@ -77,8 +81,10 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
 
 
 
+    //Auswahl des Zaubers vom User
     fun zauberAuswaehlen() {
         println("Wähle einen Zauber: ")
+        //Liste der möglichen Zauber:
         when (inputHeld) {
             1 -> {                                          //Aktionen der Zauberin anzeigen
                 var a = 1
@@ -104,8 +110,9 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
                 }
             }
         }
-        println("Wähle eine Zahl:")
 
+        println("Wähle eine Zahl:")
+        //Fehlerhafte Eingaben des Users abfangen
         try {
             auswahlZauber = readln().toInt()
 
@@ -123,7 +130,8 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
             zauberAuswaehlen()
         }
 
-        //Spielen
+        //Spiel beginnt
+        //Zauber + Zauberin werden entsprechend zugeordnet
         if (auswahlZauber == 1) {
             if (alleHelden[inputHeld - 1] == zauberin && zauberin.heilPK > 0) {
                 zauberin.petrificusTotalus(entgegner)
@@ -183,7 +191,6 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
         }
 
 
-
         //Beutel nutzen, wenn eingegebener Held unter 250 PK
         if (alleHelden[inputHeld - 1].heilPK > 0) {
             if (alleHelden[inputHeld - 1].heilPK in 1..250 && entgegner.heilPK > 0) {
@@ -192,11 +199,11 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
         }
 
 
-        //Gegner mit Zufallsangriff auf random-Helden
+        //Gegner mit Zufallsangriff auf random-Zauberin
         entgegner.zufallsAngriff(entgegner, alleHelden.random())
 
 
-        //check: falls heilPK <=0, dann Held tot + aus Liste entfernen
+        //check: falls heilPK <=0, dann Zauberin tot + aus Liste entfernen
         for (i in 0 until alleHelden.size) {
             if (alleHelden[i].heilPK <= 0) {
                 println("${alleHelden[i].name} ist tot.")
@@ -208,7 +215,8 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
     }
 
 
-        //Vorstellung der einzelnen Mitglieder der Teams
+        //Vorspann
+        //Die Geschichte + Vorstellung der einzelnen Mitglieder der Teams
         fun vorstellung() {
             //Einführung
             println()

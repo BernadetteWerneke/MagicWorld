@@ -1,6 +1,6 @@
 class Hexe(name:String, heilPK:Int):Helden(name, heilPK,){
 
-    //Zauber-Aktionen:
+    //Zauber-Aktionen der Hexe des Westens:
     //Avis (Vogelheraufbeschwörungszauber)
      fun avis(gegner: Gegner){
         this.schadenPK=(150..250).random()

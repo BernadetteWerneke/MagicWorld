@@ -1,6 +1,6 @@
 class Zauberin (name:String, heilPK:Int):Helden(name, heilPK,) {
 
-    //Zauber-Aktionen:
+    //Zauber-Aktionen von Maleficient:
     //Petrificus Totalus (Versteinerungszauber)
     fun petrificusTotalus(gegner: Gegner) {
         this.schadenPK = (250..350).random()

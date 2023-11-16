@@ -12,6 +12,7 @@ class Entgegner(name: String, heilPK: Int) : Gegner(name, heilPK) {
             helferCasten = true
         }
 
+        //Zauber zufällig auswählen
         if (helden.heilPK > 0 && entgegner.heilPK >0) {
             val aktionsListe: List<Int> = listOf(1, 2, 3, 4, 5, 6)
             val aktion = aktionsListe.random()
@@ -29,7 +30,7 @@ class Entgegner(name: String, heilPK: Int) : Gegner(name, heilPK) {
                 6 -> { avis(helden) }
             }
             if (helferCasten && !keinHelferMehr) {                  //weitere total zufällige Zauberattacke von Helfer, nur 1x pro Kampf
-                helfer.zufallsAngriff(helfer, helden)
+                helfer.zufallsAngriff(helfer, helden)               //Auswahl Angriff des Helfers auf Zauberinnen
                 keinHelferMehr = true
             }
 
