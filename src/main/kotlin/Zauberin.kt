@@ -5,66 +5,90 @@ class Zauberin (name:String, heilPK:Int):Helden(name, heilPK) {
     fun petrificusTotalus(gegner: Gegner) {
         this.schadenPK = (250..350).random()
         val zauberName = "Petrificus Totalus (Versteinerungszauber)"
-        println("Zauberin ${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
-        println("Gegner: ${gegner.name} (${gegner.heilPK} PK)")
-        gegner.heilPK -= schadenPK
-        println("Gegner verliert.")
-        if (gegner.heilPK > 0) {
-            println("Neue PK Schurke: ${gegner.heilPK}")
-        } else {
-            println("Der Schurke ist tot. + + +")
-        }
-        println("------------------------------------------------------")
+
+        textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
+
+        berechnungGegnerPunkte(gegner, schadenPK)
+
+        berechnungLebenOderTod(gegner)
+
+        trennZeile()
     }
 
     //Avis (Vogel-Heraufbeschwörungszauber)
-    fun avis(gegner: Gegner){
-        this.schadenPK=(280..320).random()
+    fun avis(gegner: Gegner) {
+        this.schadenPK = (280..320).random()
         val zauberName = "Avis (Vogel-Heraufbeschwörungszauber)"
-        println("Zauberin ${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
-        println("Gegner: ${gegner.name} (${gegner.heilPK} PK)")
-        gegner.heilPK -= schadenPK
-        println("Gegner verliert.")
-        if (gegner.heilPK > 0) {
-                println("Neue PK Schurke: ${gegner.heilPK}")
-        } else {
-            println("Der Schurke ist tot. + + +")
-        }
-        println("------------------------------------------------------")
+
+        textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
+
+        berechnungGegnerPunkte(gegner, schadenPK)
+
+        berechnungLebenOderTod(gegner)
+
+        trennZeile()
     }
 
     //Expelliarmus (Entwaffnungszauber)
-    fun expelliarmus(gegner: Gegner){
-        schadenPK=(80..150).random()
+    fun expelliarmus(gegner: Gegner) {
+        schadenPK = (80..150).random()
         val zauberName = "Expelliarmus (Entwaffnungszauber)"
-        println("Zauberin ${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
-        println("Gegner: ${gegner.name} (${gegner.heilPK} PK)")
-        gegner.heilPK -= schadenPK
-        println("Gegner verliert.")
-        if (gegner.heilPK > 0) {
-            println("Neue PK Schurke: ${gegner.heilPK}")
-        } else {
-            println("Der Schurke ist tot. + + +")
-        }
-        println("------------------------------------------------------")
+
+        textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
+
+        berechnungGegnerPunkte(gegner, schadenPK)
+
+        berechnungLebenOderTod(gegner)
+
+        trennZeile()
     }
 
     //Incendio (Feuerzauber)
-    fun incendio(gegner: Gegner){
-        this.schadenPK=(150..250).random()
+    fun incendio(gegner: Gegner) {
+        this.schadenPK = (150..250).random()
         val zauberName = "Incendio (Feuerzauber)"
-        println("Zauberin ${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
-        println("Gegner: ${gegner.name} (${gegner.heilPK} PK)")
+
+        textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
+
+        berechnungGegnerPunkte(gegner, schadenPK)
+
+        berechnungLebenOderTod(gegner)
+
+        trennZeile()
+
+    }
+
+
+    fun trennZeile() {
+        println("------------------------------------------------------")
+    }
+
+    fun berechnungLebenOderTod(gegner: Gegner) {
+        if (gegner.heilPK > 0) {
+            println("Neue PK Schurkengegner: ${gegner.heilPK}")
+        } else {
+            println("Der Schurke ist tot. + + +")
+        }
+    }
+
+    fun berechnungGegnerPunkte(gegner: Gegner, schadenPK: Int) {
         gegner.heilPK -= schadenPK
         println("Gegner verliert.")
-        if (gegner.heilPK > 0) {
-            println("Neue PK Schurke: ${gegner.heilPK}")
-        } else {
-            println("Der Schurke ist tot. + + + ")
-        }
-        println("------------------------------------------------------")}
+    }
+
+    fun textBeschreibungSpielrunde(
+        heldinName: String,
+        heilPK: Int,
+        zauberName: String,
+        schadenPK: Int,
+        gegner: Gegner
+    ) {
+        println("Zauberin ${heldinName} (${heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
+        println("Gegner: ${gegner.name} (${gegner.heilPK} PK)")
+    }
 
 }
+
 
 
 
