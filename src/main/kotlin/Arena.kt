@@ -131,7 +131,7 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
         }
 
         //Spiel beginnt
-        //Zauber + Zauberin werden entsprechend zugeordnet
+        //Zauber + Zauberinnen werden entsprechend zugeordnet
         if (auswahlZauber == 1) {
             if (alleHelden[inputHeld - 1] == zauberin && zauberin.heilPK > 0) {
                 zauberin.petrificusTotalus(entgegner)

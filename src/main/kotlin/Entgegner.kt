@@ -42,65 +42,72 @@ class Entgegner(name: String, heilPK: Int) : Gegner(name, heilPK) {
     fun petrificusTotalus(helden: Helden) {
         this.schadenPK = (200..300).random()
         var zauberName = "Petrificus Totalus (Versteinerungszauber)"
-        println("${this.name} (${this.heilPK} PK) zaubert mit $zauberName (${this.schadenPK} SchadenPK).")
-        println("gegen Zauberin ${helden.name} (${helden.heilPK} PK)")
-        helden.heilPK -= schadenPK
-        println("Zauberin verliert. Neue PK Zauberin: ${helden.heilPK}")
-        println("------------------------------------------------------")
+
+        textBeschreibungSpielrundeGegner(entgegner.name, heilPK, zauberName, helden, schadenPK)
+
+        berechnungPunkte(helden, schadenPK)
     }
 
     //Stupor (Schockzauber)
     fun stupor(helden: Helden) {
         this.schadenPK = (180..250).random()
         var zauberName = "Stupor (Schockzauber)"
-        println("${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
-        println("gegen Zauberin ${helden.name} (${helden.heilPK} PK)")
-        helden.heilPK -= schadenPK
-        println("Zauberin verliert. Neue PK Zauberin: ${helden.heilPK}")
-        println("------------------------------------------------------")
+
+        textBeschreibungSpielrundeGegner(entgegner.name, heilPK, zauberName, helden, schadenPK)
+
+        berechnungPunkte(helden, schadenPK)
     }
 
     //Confringo (Sprengzauber)
     fun confringo(helden: Helden) {
         this.schadenPK = (280..330).random()
         var zauberName = "Confringo (Sprengzauber)"
-        println("${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
-        println("gegen Zauberin ${helden.name} (${helden.heilPK} PK)")
-        helden.heilPK -= schadenPK
-        println("Zauberin verliert. Neue PK Zauberin: ${helden.heilPK}")
-        println("------------------------------------------------------")
+
+        textBeschreibungSpielrundeGegner(entgegner.name, heilPK, zauberName, helden, schadenPK)
+
+        berechnungPunkte(helden, schadenPK)
     }
 
     //Sectumsempra (Verwundungszauber)
     fun sectumsempra(helden: Helden) {
         this.schadenPK = (50..280).random()
         var zauberName = "Sectumsempra (Verwundungszauber)"
-        println("${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
-        println("gegen Zauberin ${helden.name} (${helden.heilPK} PK)")
-        helden.heilPK -= schadenPK
-        println("Zauberin verliert. Neue PK Zauberin: ${helden.heilPK}")
-        println("------------------------------------------------------")
+
+        textBeschreibungSpielrundeGegner(entgegner.name, heilPK, zauberName, helden, schadenPK)
+
+        berechnungPunkte(helden, schadenPK)
     }
 
     //Confundo (Verwirrungszauber)
     fun confundo(helden: Helden) {
         this.schadenPK = (20..80).random()
         var zauberName = "Confundo (Verwirrungszauber)"
-        println("${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
-        println("gegen Zauberin ${helden.name} (${helden.heilPK} PK)")
-        helden.heilPK -= schadenPK
-        println("Zauberin verliert. Neue PK Zauberin: ${helden.heilPK}")
-        println("------------------------------------------------------")
+
+        textBeschreibungSpielrundeGegner(entgegner.name, heilPK, zauberName, helden, schadenPK)
+
+        berechnungPunkte(helden, schadenPK)
     }
 
     //Avis (Vogel-Heraufbeschwörungszauber)
     fun avis(helden: Helden) {
         this.schadenPK = (280..320).random()
         var zauberName = "Avis (Vogel-Heraufbeschwörungszauber)"
-        println("${this.name} (${this.heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
-        println("gegen Zauberin ${helden.name} (${helden.heilPK} PK)")
+
+        textBeschreibungSpielrundeGegner(entgegner.name, heilPK, zauberName, helden, schadenPK)
+
+        berechnungPunkte(helden, schadenPK)
+    }
+
+
+    private fun berechnungPunkte(helden: Helden, schadenPK: Int) {
         helden.heilPK -= schadenPK
-        println("Zauberin verliert. Neue PK Zauberin: ${helden.heilPK}")
+        println("Heldin verliert. Neue PK Heldin: ${helden.heilPK}")
         println("------------------------------------------------------")
     }
+
+    private fun textBeschreibungSpielrundeGegner(gegnerName: String, heilPK: Int, zauberName: String, helden: Helden, schadenPK: Int) {
+        println("${gegnerName} (${heilPK} PK) zaubert mit $zauberName (${schadenPK} SchadenPK).")
+        println("gegen Heldin ${helden.name} (${helden.heilPK} PK)")
+    }
+
 }
