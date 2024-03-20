@@ -45,7 +45,7 @@ val arena:Arena = Arena(zauberin, hexe, hausdrache, entgegner)
         }
 
         //User wählt Zauberin aus
-        arena.heldWaehlen()
+        arena.heldinWaehlen()
 
         //User sucht Zauber aus
         arena.zauberAuswaehlen()
