@@ -28,21 +28,16 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
 
 
     //Zauberin auswählen:
-    fun heldWaehlen() {
-        var a = 1
+    fun heldinWaehlen() {
 
         println("Welche Zauberin zaubert?")
 
-        //mögliche Zauberinnen anzeigen aus Heldenteam:
+        //Heldinnen mit LebensPunkten anzeigen
+        anzeigeHeldinnen()
 
-            for (i in 0..alleHelden.size - 1) {
-                println("$a für ${alleHelden[i].name} (${alleHelden[i].heilPK} PK)")
-                a++
-            }
+        println("Spielende mit Eingabe '99'.Gib eine Zahl ein :")
 
-            println("Gib eine Zahl ein:")
-
-            //Eingabefehler des Users abfangen
+            //Eingabefehler des Users abfangen / Spiel beenden
             try {
                 inputHeld = readln().toInt()
 
@@ -50,80 +45,58 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
                 checkSpielAbbrechen(inputHeld)
 
                 //check auf gültige Eingabe der Zahl im Range
-                if (inputHeld < 1 || inputHeld > 3) {
-                    println("Gib eine gültige Zahl zwischen 1 und 3 ein.")
-                    heldWaehlen()
-                } else {
-                    println("${alleHelden[inputHeld - 1].name} tritt diese Runde an.")
-                }
+                checkGueltigeEingabe("Heldin")
 
             } catch (ex: Exception) {
                 println("Gib eine gültige Zahl ein. Sonst kann das Spiel nicht weitergehen!")
-                heldWaehlen()
+                heldinWaehlen()
             }
 
 
-        //Held wieder hinzufügen nach 1 Runde aussetzen (Vitamintrank trinken)
+        //Heldin wieder hinzufügen nach 1 Runde aussetzen (Vitamintrank trinken)
         if (eineRundeAussetzen) {
+            nachAussetzenWiederHinzufuegen()
+        }
+    }
+
+    private fun nachAussetzenWiederHinzufuegen() {
             alleHelden = heldSetztWiederEin
             eineRundeAussetzen = false
-        }
     }
 
-    //check, ob das Spiel vom Spieler selbst abgebrochen werden soll (Eingabe der Zahl 99)
-    //nur möglich bei Eingabe Heldin und Eingabe Zauber
-    private fun checkSpielAbbrechen(input: Int) {
-        if (input == 99) {
-            println("Spiel wurde vom Spieler abgebrochen. Das Spiel ist beendet.")
-            System.exit(0)
+    private fun anzeigeHeldinnen() {
+        var a = 1
+        for (i in 0 until alleHelden.size) {
+            println("$a für ${alleHelden[i].name} (${alleHelden[i].heilPK} PK)")
+            a++
         }
     }
-
 
 
     //Auswahl des Zaubers vom User
     fun zauberAuswaehlen() {
+        zauberin.trennZeile()
         println("Wähle einen Zauber: ")
-        //Liste der möglichen Zauber:
+
+        //Liste der möglichen Zauber anzeigen
         when (inputHeld) {
-            1 -> {                                          //Aktionen der Zauberin anzeigen
-                var a = 1
-                for (i in 0..zauberListe.size - 1) {
-                    println("$a Zauber: ${zauberListe[i]}")
-                    a++
-                }
-            }
-
-            2 -> {                                          //Aktionen der Hexe anzeigen
-                var a = 1
-                for (i in 0..hexenListe.size - 1) {
-                    println("$a Zauber: ${hexenListe[i]}")
-                    a++
-                }
-            }
-
-            3 -> {                                         //Aktionen des Hausdrachen anzeigen
-                var a = 1
-                for (i in 0..hausdracheListe.size - 1) {
-                    println("$a Zauber: ${hausdracheListe[i]}")
-                    a++
-                }
-            }
+            1 -> { aktionenHeldinAnzeigen(zauberListe) }    //Aktionen der Zauberin anzeigen
+            2 -> { aktionenHeldinAnzeigen(hexenListe) }     //Aktionen der Hexe anzeigen
+            3 -> { aktionenHeldinAnzeigen(hausdracheListe) }//Aktionen des Hausdrachen anzeigen
         }
 
-        println("Wähle eine Zahl:")
+        //Auswahl des Zaubers
+        println("Spielende mit Eingabe '99'. Wähle eine Zahl:")
+
         //Fehlerhafte Eingaben des Users abfangen
         try {
             auswahlZauber = readln().toInt()
 
-            //check Abbruch durch den Spieler
+            //check Abbruch durch den Spieler mit Eingabe 99
             checkSpielAbbrechen(auswahlZauber)
 
             //check auf gültige Eingabe im Range
-            if (auswahlZauber < 1 || auswahlZauber > 4) {
-                println("Gib eine gültige Zahl zwischen 1 und 4 ein.")
-                zauberAuswaehlen()
-            }
+            checkGueltigeEingabe("Zauber")
 
         } catch (ex: Exception) {
             println("Gib eine der obigen Zahlen ein. Sonst geht das Spiel nicht weiter!")
@@ -214,8 +187,54 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
         }
     }
 
+    private fun checkGueltigeEingabe(check: String) {
 
-        //Vorspann
+        when (check) {
+            //check, ob Eingabe der Heldin korrekt ist
+            "Heldin" -> {
+                if (inputHeld < 1 || inputHeld > 3) {
+                    println("Gib eine gültige Zahl zwischen 1 und 3 ein.")
+                    inputHeld = 0
+                    heldinWaehlen()
+
+                } else {
+                    println("${alleHelden[inputHeld - 1].name} tritt diese Runde an.")
+                }
+
+            }
+            //check, ob Eingabe des Zaubers korrekt ist
+            "Zauber" -> {
+                if (auswahlZauber < 1 || auswahlZauber > 4) {
+                    println("Gib eine gültige Zahl zwischen 1 und 4 ein.")
+                    auswahlZauber = 0
+                    zauberAuswaehlen()
+                }
+            }
+        }
+    }
+
+    //Auflistung der Zauber der jeweils ausgewählten Heldin
+    private fun aktionenHeldinAnzeigen(zauberSpruchListe: MutableList<String>) {
+        var a = 1
+        for (i in 0 until zauberSpruchListe.size) {
+            println("$a Zauber: ${zauberSpruchListe[i]}")
+            a++
+        }
+    }
+
+    //check, ob das Spiel vom Spieler selbst abgebrochen werden soll (Eingabe der Zahl 99)
+    //nur möglich bei Eingabe Heldin und Eingabe Zauber
+    private fun checkSpielAbbrechen(input: Int) {
+        if (input == 99) {
+            println("Spiel wurde vom Spieler abgebrochen. Das Spiel ist beendet.")
+            System.exit(0)
+        }
+    }
+
+//___________________________________________________________________________________
+
+
+    //Vorspann
         //Die Geschichte + Vorstellung der einzelnen Mitglieder der Teams
         fun vorstellung() {
             //Einführung
