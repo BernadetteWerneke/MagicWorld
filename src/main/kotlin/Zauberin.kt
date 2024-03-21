@@ -12,7 +12,7 @@ class Zauberin (name:String, heilPK:Int):Helden(name, heilPK) {
 
         berechnungLebenOderTod(gegner)
 
-        trennZeile()
+        AllgemeineFkt.trennZeile()
     }
 
     //Avis (Vogel-Heraufbeschwörungszauber)
@@ -26,7 +26,7 @@ class Zauberin (name:String, heilPK:Int):Helden(name, heilPK) {
 
         berechnungLebenOderTod(gegner)
 
-        trennZeile()
+        AllgemeineFkt.trennZeile()
     }
 
     //Expelliarmus (Entwaffnungszauber)
@@ -40,7 +40,7 @@ class Zauberin (name:String, heilPK:Int):Helden(name, heilPK) {
 
         berechnungLebenOderTod(gegner)
 
-        trennZeile()
+        AllgemeineFkt.trennZeile()
     }
 
     //Incendio (Feuerzauber)
@@ -54,14 +54,13 @@ class Zauberin (name:String, heilPK:Int):Helden(name, heilPK) {
 
         berechnungLebenOderTod(gegner)
 
-        trennZeile()
-
+        AllgemeineFkt.trennZeile()
     }
 
 
-    fun trennZeile() {
+    /*fun trennZeile() {
         println("------------------------------------------------------")
-    }
+    }*/
 
     fun berechnungLebenOderTod(gegner: Gegner) {
         if (gegner.heilPK > 0) {
