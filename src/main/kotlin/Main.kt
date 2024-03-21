@@ -20,10 +20,11 @@ var heldSetztWiederEin: MutableList<Helden> = mutableListOf()   //für Zwischens
 
 
 fun main() {
-val arena:Arena = Arena(zauberin, hexe, hausdrache, entgegner)
+    //Arena, wo alles stattfindet
+    val arena:Arena = Arena(zauberin, hexe, hausdrache, entgegner)
 
-    //Vorstellung der Teams
-    arena.vorstellung()
+    //Vorspann: Einführung in die Geschichte und Vorstellung der Teams
+    Geschichte.vorstellung()
 
     //Spielrunden
     while (spielen ){
@@ -33,10 +34,10 @@ val arena:Arena = Arena(zauberin, hexe, hausdrache, entgegner)
             println("Alle Zauberinnen haben verloren. Sie kämpften verzweifelt,\n" +
                     "aber sie konnten nichts ausrichten. Snape und Lestrange \n" +
                     "triumphierten und übernahmen die Welt. Spielende!")
-            spielen =false
+            spielen = false
             break
         }
-        if (entgegner.heilPK <=0){
+        if (entgegner.heilPK <= 0){
             println("Der Bösewicht ist besiegt. Und so endet die Geschichte von den \n" +
                     "drei Zauberinnen und dem düsteren Schurken. Und sie lebten \n" +
                     "glücklich und zufrieden bis an ihr Lebensende.")

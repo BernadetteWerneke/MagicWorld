@@ -12,7 +12,7 @@ class Hausdrache(name:String, heilPK:Int):Helden(name, heilPK){
 
         zauberin.berechnungLebenOderTod(gegner)
 
-        zauberin.trennZeile()
+        AllgemeineFkt.trennZeile()
      }
 
     //Stupor (Schockzauber)
@@ -26,7 +26,7 @@ class Hausdrache(name:String, heilPK:Int):Helden(name, heilPK){
 
         zauberin.berechnungLebenOderTod(gegner)
 
-        zauberin.trennZeile()
+        AllgemeineFkt.trennZeile()
      }
 
     //Sectumsempra (Verwundungszauber)
@@ -40,7 +40,7 @@ class Hausdrache(name:String, heilPK:Int):Helden(name, heilPK){
 
         zauberin.berechnungLebenOderTod(gegner)
 
-        zauberin.trennZeile()
+        AllgemeineFkt.trennZeile()
     }
 
     //Aguamenti (Wasser-Aufrufzauber)
@@ -54,6 +54,6 @@ class Hausdrache(name:String, heilPK:Int):Helden(name, heilPK){
 
         zauberin.berechnungLebenOderTod(gegner)
 
-        zauberin.trennZeile()
+        AllgemeineFkt.trennZeile()
     }
 }
