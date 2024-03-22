@@ -1,113 +1,82 @@
 class Entgegner(name: String, heilPK: Int) : Gegner(name, heilPK) {
 
     //Gegner ist immer Entgegner Snape
-    var helferCasten = false
-    var keinHelferMehr = false
+     var helferCasten = false
+     var keinHelferMehr = false
+     var zauberName = ""
 
+    //Angriff des Gegners
     fun zufallsAngriff(entgegner: Entgegner, helden: Helden) {
 
-        //Helfer casten, zufällig
+        //per Würfel wird der Helfer gecastet (einmalig pro Runde) oder nicht
+        castingHelferPerZufall()
+        //Zufallsauswahl, welcher Zauber der Gegner benutzt
+        zauberAuswaehlen(this, helden)
+        //check, ob Helfer noch eingesetzt werden kann
+        checkHelferEinsatz(helden)
+        //Schweregrad des Zaubers des Gegners festlegen
+        zauberHaerteFestlegen()
+        //Attacke des Gegners
+        textBeschreibungSpielrundeGegner(entgegner.name, heilPK, zauberName, helden, schadenPK)
+        //Punktestand anzeigen
+        berechnungPunkte(helden, schadenPK)
+        }
+
+    //check, ob Helfer noch verfügbar
+    private fun checkHelferEinsatz(helden: Helden): Boolean {
+        if (helferCasten && !keinHelferMehr) {                  //weitere total zufällige Zauberattacke von Helfer, nur 1x pro Kampf
+            helfer.zufallsAngriff(helfer, helden)               //Auswahl Angriff des Helfers auf Zauberinnen
+            keinHelferMehr = true
+        }
+        return keinHelferMehr
+    }
+
+    //Zufallsauswahl, ob Helfer eingesetzt wird
+    private fun castingHelferPerZufall(): Boolean {
         val wuerfel = (1..6).random()
+        //Falls Würfel 1 oder 6 ist, kommt Snapes Assistentin ins Spiel, um einen Zauber auf die Heldinnen zusätzlich anzuwenden
         if (wuerfel == 1 || wuerfel == 6) {
             helferCasten = true
         }
-
-        //Zauber zufällig auswählen
-        if (helden.heilPK > 0 && entgegner.heilPK >0) {
-            val aktionsListe: List<Int> = listOf(1, 2, 3, 4, 5, 6)
-            val aktion = aktionsListe.random()
-            when (aktion) {
-                1 -> { petrificusTotalus(helden) }
-
-                2 -> { stupor(helden) }
-
-                3 -> { confringo(helden) }
-
-                4 -> { sectumsempra(helden) }
-
-                5 -> { confundo(helden) }
-
-                6 -> { avis(helden) }
-            }
-            if (helferCasten && !keinHelferMehr) {                  //weitere total zufällige Zauberattacke von Helfer, nur 1x pro Kampf
-                helfer.zufallsAngriff(helfer, helden)               //Auswahl Angriff des Helfers auf Zauberinnen
-                keinHelferMehr = true
-            }
-
-        }
+        return helferCasten
     }
 
-    //Zauber-Aktionen:
-    //Petrificus Totalus (Versteinerungszauber)
-    fun petrificusTotalus(helden: Helden) {
-        this.schadenPK = (200..300).random()
-        var zauberName = "Petrificus Totalus (Versteinerungszauber)"
-
-        textBeschreibungSpielrundeGegner(entgegner.name, heilPK, zauberName, helden, schadenPK)
-
-        berechnungPunkte(helden, schadenPK)
+    //Festlegung der Härte des gegnerischen Zaubers
+    private fun zauberHaerteFestlegen(): Int {
+         return (40..330).random().also { this.schadenPK = it }
     }
-
-    //Stupor (Schockzauber)
-    fun stupor(helden: Helden) {
-        this.schadenPK = (180..250).random()
-        var zauberName = "Stupor (Schockzauber)"
-
-        textBeschreibungSpielrundeGegner(entgegner.name, heilPK, zauberName, helden, schadenPK)
-
-        berechnungPunkte(helden, schadenPK)
-    }
-
-    //Confringo (Sprengzauber)
-    fun confringo(helden: Helden) {
-        this.schadenPK = (280..330).random()
-        var zauberName = "Confringo (Sprengzauber)"
-
-        textBeschreibungSpielrundeGegner(entgegner.name, heilPK, zauberName, helden, schadenPK)
-
-        berechnungPunkte(helden, schadenPK)
-    }
-
-    //Sectumsempra (Verwundungszauber)
-    fun sectumsempra(helden: Helden) {
-        this.schadenPK = (50..280).random()
-        var zauberName = "Sectumsempra (Verwundungszauber)"
-
-        textBeschreibungSpielrundeGegner(entgegner.name, heilPK, zauberName, helden, schadenPK)
-
-        berechnungPunkte(helden, schadenPK)
-    }
-
-    //Confundo (Verwirrungszauber)
-    fun confundo(helden: Helden) {
-        this.schadenPK = (20..80).random()
-        var zauberName = "Confundo (Verwirrungszauber)"
-
-        textBeschreibungSpielrundeGegner(entgegner.name, heilPK, zauberName, helden, schadenPK)
-
-        berechnungPunkte(helden, schadenPK)
-    }
-
-    //Avis (Vogel-Heraufbeschwörungszauber)
-    fun avis(helden: Helden) {
-        this.schadenPK = (280..320).random()
-        var zauberName = "Avis (Vogel-Heraufbeschwörungszauber)"
-
-        textBeschreibungSpielrundeGegner(entgegner.name, heilPK, zauberName, helden, schadenPK)
-
-        berechnungPunkte(helden, schadenPK)
-    }
-
 
     private fun berechnungPunkte(helden: Helden, schadenPK: Int) {
         helden.heilPK -= schadenPK
         println("Heldin verliert. Neue PK Heldin: ${helden.heilPK}")
-        println("------------------------------------------------------")
+        AllgemeineFkt.trennZeile()
     }
 
     private fun textBeschreibungSpielrundeGegner(gegnerName: String, heilPK: Int, zauberName: String, helden: Helden, schadenPK: Int) {
         println("${gegnerName} (${heilPK} PK) zaubert mit $zauberName (${schadenPK} SchadenPK).")
         println("gegen Heldin ${helden.name} (${helden.heilPK} PK)")
     }
+
+    private fun zauberAuswaehlen(entgegner: Entgegner, helden: Helden): String {
+            //Zauber zufällig auswählen
+            //check, ob Held oder Gegner noch lebendig sind
+            if (helden.heilPK > 0 && entgegner.heilPK >0) {
+                //Liste aller Zauber des Gegners
+                val aktionsListe: List<Int> = listOf(1, 2, 3, 4, 5, 6)
+                //zufällige Auswahl des Zaubers des Gegeners
+                val aktion = aktionsListe.random()
+    
+                //entsprechende Zauber werden der Aktionsliste zugeordnet
+                when (aktion) {
+                    1 -> { entgegner.zauberName = "Petrificus Totalus (Versteinerungszauber)" }   //Petrificus Totalus (Versteinerungszauber)
+                    2 -> { entgegner.zauberName = "Stupor (Schockzauber)" }                       //Stupor (Schockzauber)
+                    3 -> { entgegner.zauberName = "Confringo (Sprengzauber)" }                    //Confringo (Sprengzauber)
+                    4 -> { entgegner.zauberName = "Sectumsempra (Verwundungszauber)"}             //Sectumsempra (Verwundungszauber)
+                    5 -> { entgegner.zauberName = "Confundo (Verwirrungszauber)"}                 //Confundo (Verwirrungszauber)
+                    6 -> { entgegner.zauberName = "Avis (Vogel-Heraufbeschwörungszauber)"}        //Avis (Vogel-Heraufbeschwörungszauber)
+                }
+            }
+            return entgegner.zauberName
+        }
 
 }
