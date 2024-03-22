@@ -59,6 +59,7 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
         }
     }
 
+    //Falls eine Heldin einen Trunk nutzt, muss sie 1 Runde aussetzen. Hier wird sie wieder hinzugefügt
     private fun nachAussetzenWiederHinzufuegen() {
             alleHelden = heldSetztWiederEin
             eineRundeAussetzen = false
