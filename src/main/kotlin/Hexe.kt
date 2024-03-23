@@ -6,13 +6,10 @@ class Hexe(name:String, heilPK:Int):Helden(name, heilPK,){
         this.schadenPK=(150..250).random()
         val zauberName = "Avis (Vogelheraufbeschwörungszauber)"
 
-        zauberin.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
-
-        zauberin.berechnungGegnerPunkte(gegner, schadenPK)
-
-        zauberin.berechnungLebenOderTod(gegner)
-
-        AllgemeineFkt.trennZeile()
+        Utils.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
+        Utils.berechnungGegnerPunkte(gegner, schadenPK)
+        Utils.berechnungLebenOderTod(gegner)
+        Utils.trennZeile()
      }
 
     //Finite Incantatem (Schutzzauber)
@@ -20,13 +17,10 @@ class Hexe(name:String, heilPK:Int):Helden(name, heilPK,){
         this.schadenPK=(25..50).random()
         val zauberName = "Finite Incantatem (Schutzzauber)"
 
-        zauberin.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
-
-        zauberin.berechnungGegnerPunkte(gegner, schadenPK)
-
-        zauberin.berechnungLebenOderTod(gegner)
-
-        AllgemeineFkt.trennZeile()
+        Utils.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
+        Utils.berechnungGegnerPunkte(gegner, schadenPK)
+        Utils.berechnungLebenOderTod(gegner)
+        Utils.trennZeile()
      }
 
     //Expecto Patronum (Schutzzauber)
@@ -34,13 +28,10 @@ class Hexe(name:String, heilPK:Int):Helden(name, heilPK,){
         this.schadenPK=(200..250).random()
         val zauberName = "Expecto Patronum (Schutzzauber)"
 
-        zauberin.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
-
-        zauberin.berechnungGegnerPunkte(gegner, schadenPK)
-
-        zauberin.berechnungLebenOderTod(gegner)
-
-        AllgemeineFkt.trennZeile()
+        Utils.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
+        Utils.berechnungGegnerPunkte(gegner, schadenPK)
+        Utils.berechnungLebenOderTod(gegner)
+        Utils.trennZeile()
     }
 
     //Waddiwasi (Schleuderzauber)
@@ -48,13 +39,10 @@ class Hexe(name:String, heilPK:Int):Helden(name, heilPK,){
         this.schadenPK=(240..280).random()
         val zauberName = "Waddiwasi (Schleuderzauber)"
 
-        zauberin.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
-
-        zauberin.berechnungGegnerPunkte(gegner, schadenPK)
-
-        zauberin.berechnungLebenOderTod(gegner)
-
-        AllgemeineFkt.trennZeile()
+        Utils.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
+        Utils.berechnungGegnerPunkte(gegner, schadenPK)
+        Utils.berechnungLebenOderTod(gegner)
+        Utils.trennZeile()
     }
 
 }

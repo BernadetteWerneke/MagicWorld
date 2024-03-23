@@ -1,3 +1,4 @@
+
 class Hausdrache(name:String, heilPK:Int):Helden(name, heilPK){
 
     //Zauber-Aktionen von Ursula:
@@ -6,13 +7,10 @@ class Hausdrache(name:String, heilPK:Int):Helden(name, heilPK){
         this.schadenPK=(200..250).random()
         val zauberName = "Avis (Vogelheraufbeschwörungszauber)"
 
-        zauberin.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
-
-        zauberin.berechnungGegnerPunkte(gegner, schadenPK)
-
-        zauberin.berechnungLebenOderTod(gegner)
-
-        AllgemeineFkt.trennZeile()
+        Utils.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
+        Utils.berechnungGegnerPunkte(gegner, schadenPK)
+        Utils.berechnungLebenOderTod(gegner)
+        Utils.trennZeile()
      }
 
     //Stupor (Schockzauber)
@@ -20,13 +18,10 @@ class Hausdrache(name:String, heilPK:Int):Helden(name, heilPK){
         this.schadenPK=120
         val zauberName = "Stupor (Schockzauber)"
 
-        zauberin.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
-
-        zauberin.berechnungGegnerPunkte(gegner, schadenPK)
-
-        zauberin.berechnungLebenOderTod(gegner)
-
-        AllgemeineFkt.trennZeile()
+        Utils.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
+        Utils.berechnungGegnerPunkte(gegner, schadenPK)
+        Utils.berechnungLebenOderTod(gegner)
+        Utils.trennZeile()
      }
 
     //Sectumsempra (Verwundungszauber)
@@ -34,13 +29,10 @@ class Hausdrache(name:String, heilPK:Int):Helden(name, heilPK){
         this.schadenPK=280
         val zauberName = "Sectumsempra (Verwundungszauber)"
 
-        zauberin.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
-
-        zauberin.berechnungGegnerPunkte(gegner, schadenPK)
-
-        zauberin.berechnungLebenOderTod(gegner)
-
-        AllgemeineFkt.trennZeile()
+        Utils.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
+        Utils.berechnungGegnerPunkte(gegner, schadenPK)
+        Utils.berechnungLebenOderTod(gegner)
+        Utils.trennZeile()
     }
 
     //Aguamenti (Wasser-Aufrufzauber)
@@ -48,12 +40,9 @@ class Hausdrache(name:String, heilPK:Int):Helden(name, heilPK){
         this.schadenPK=(50..230).random()
         val zauberName = "Aguamenti (Wasser-Aufrufzauber)"
 
-        zauberin.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
-
-        zauberin.berechnungGegnerPunkte(gegner, schadenPK)
-
-        zauberin.berechnungLebenOderTod(gegner)
-
-        AllgemeineFkt.trennZeile()
+        Utils.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
+        Utils.berechnungGegnerPunkte(gegner, schadenPK)
+        Utils.berechnungLebenOderTod(gegner)
+        Utils.trennZeile()
     }
 }
