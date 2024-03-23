@@ -6,13 +6,10 @@ class Zauberin (name:String, heilPK:Int):Helden(name, heilPK) {
         this.schadenPK = (250..350).random()
         val zauberName = "Petrificus Totalus (Versteinerungszauber)"
 
-        textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
-
-        berechnungGegnerPunkte(gegner, schadenPK)
-
-        berechnungLebenOderTod(gegner)
-
-        AllgemeineFkt.trennZeile()
+        Utils.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
+        Utils.berechnungGegnerPunkte(gegner, schadenPK)
+        Utils.berechnungLebenOderTod(gegner)
+        Utils.trennZeile()
     }
 
     //Avis (Vogel-Heraufbeschwörungszauber)
@@ -20,13 +17,10 @@ class Zauberin (name:String, heilPK:Int):Helden(name, heilPK) {
         this.schadenPK = (280..320).random()
         val zauberName = "Avis (Vogel-Heraufbeschwörungszauber)"
 
-        textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
-
-        berechnungGegnerPunkte(gegner, schadenPK)
-
-        berechnungLebenOderTod(gegner)
-
-        AllgemeineFkt.trennZeile()
+        Utils.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
+        Utils.berechnungGegnerPunkte(gegner, schadenPK)
+        Utils.berechnungLebenOderTod(gegner)
+        Utils.trennZeile()
     }
 
     //Expelliarmus (Entwaffnungszauber)
@@ -34,13 +28,10 @@ class Zauberin (name:String, heilPK:Int):Helden(name, heilPK) {
         schadenPK = (80..150).random()
         val zauberName = "Expelliarmus (Entwaffnungszauber)"
 
-        textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
-
-        berechnungGegnerPunkte(gegner, schadenPK)
-
-        berechnungLebenOderTod(gegner)
-
-        AllgemeineFkt.trennZeile()
+        Utils.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
+        Utils.berechnungGegnerPunkte(gegner, schadenPK)
+        Utils.berechnungLebenOderTod(gegner)
+        Utils.trennZeile()
     }
 
     //Incendio (Feuerzauber)
@@ -48,42 +39,10 @@ class Zauberin (name:String, heilPK:Int):Helden(name, heilPK) {
         this.schadenPK = (150..250).random()
         val zauberName = "Incendio (Feuerzauber)"
 
-        textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
-
-        berechnungGegnerPunkte(gegner, schadenPK)
-
-        berechnungLebenOderTod(gegner)
-
-        AllgemeineFkt.trennZeile()
-    }
-
-
-    /*fun trennZeile() {
-        println("------------------------------------------------------")
-    }*/
-
-    fun berechnungLebenOderTod(gegner: Gegner) {
-        if (gegner.heilPK > 0) {
-            println("Neue PK Schurkengegner: ${gegner.heilPK}")
-        } else {
-            println("Der Schurke ist tot. + + +")
-        }
-    }
-
-    fun berechnungGegnerPunkte(gegner: Gegner, schadenPK: Int) {
-        gegner.heilPK -= schadenPK
-        println("Gegner verliert.")
-    }
-
-    fun textBeschreibungSpielrunde(
-        heldinName: String,
-        heilPK: Int,
-        zauberName: String,
-        schadenPK: Int,
-        gegner: Gegner
-    ) {
-        println("Zauberin ${heldinName} (${heilPK} PK) zaubert mit $zauberName ($schadenPK SchadenPK).")
-        println("Gegner: ${gegner.name} (${gegner.heilPK} PK)")
+        Utils.textBeschreibungSpielrunde(name, heilPK, zauberName, schadenPK, gegner)
+        Utils.berechnungGegnerPunkte(gegner, schadenPK)
+        Utils.berechnungLebenOderTod(gegner)
+        Utils.trennZeile()
     }
 
 }

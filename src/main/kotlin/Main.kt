@@ -21,34 +21,28 @@ var heldSetztWiederEin: MutableList<Helden> = mutableListOf()   //für Zwischens
 
 fun main() {
     //Arena, wo alles stattfindet
-    val arena:Arena = Arena(zauberin, hexe, hausdrache, entgegner)
+    val arena = Arena(zauberin, hexe, hausdrache, entgegner)
 
     //Vorspann: Einführung in die Geschichte und Vorstellung der Teams
     Geschichte.vorstellung()
 
     //Spielrunden
     while (spielen ){
-
-        //Abbruchbedingungen, wann Spiel zu Ende ist
-        if(alleHelden.isEmpty() && !eineRundeAussetzen){
-            println("Alle Zauberinnen haben verloren. Sie kämpften verzweifelt,\n" +
-                    "aber sie konnten nichts ausrichten. Snape und Lestrange \n" +
-                    "triumphierten und übernahmen die Welt. Spielende!")
-            spielen = false
-            break
-        }
-        if (entgegner.heilPK <= 0){
-            println("Der Bösewicht ist besiegt. Und so endet die Geschichte von den \n" +
-                    "drei Zauberinnen und dem düsteren Schurken. Und sie lebten \n" +
-                    "glücklich und zufrieden bis an ihr Lebensende.")
-            spielen = false
-            break
-        }
-
-        //User wählt Zauberin aus
+        //Abbruchbedingungen, wann Spiel auf natürliche Weise zu Ende ist
+        checkWeitereRunde()
+        if (!spielen) {break}
+        //User wählt Heldin aus
         arena.heldinWaehlen()
-
         //User sucht Zauber aus
         arena.zauberAuswaehlen()
     }
+}
+
+fun checkWeitereRunde(): Boolean {
+    //Falls es noch Heldinnen gibt, wird weitergespielt
+    if(alleHelden.isEmpty() && !eineRundeAussetzen){
+        Geschichte.HeldenTod()           //Ende der Geschichte, wenn Heldinnen gestorben sind
+        spielen = false
+    }
+    return spielen
 }

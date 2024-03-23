@@ -49,7 +49,7 @@ class Entgegner(name: String, heilPK: Int) : Gegner(name, heilPK) {
     private fun berechnungPunkte(helden: Helden, schadenPK: Int) {
         helden.heilPK -= schadenPK
         println("Heldin verliert. Neue PK Heldin: ${helden.heilPK}")
-        AllgemeineFkt.trennZeile()
+        Utils.trennZeile()
     }
 
     private fun textBeschreibungSpielrundeGegner(gegnerName: String, heilPK: Int, zauberName: String, helden: Helden, schadenPK: Int) {

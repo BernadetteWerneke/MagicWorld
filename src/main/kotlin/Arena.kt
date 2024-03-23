@@ -76,17 +76,10 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
 
     //Auswahl des Zaubers vom User
     fun zauberAuswaehlen() {
-
-        AllgemeineFkt.trennZeile()
+        Utils.trennZeile()
         println("Wähle einen Zauber: ")
-
         //Liste der möglichen Zauber anzeigen
-        when (inputHeld) {
-            1 -> { aktionenHeldinAnzeigen(zauberListe) }    //Aktionen der Zauberin anzeigen
-            2 -> { aktionenHeldinAnzeigen(hexenListe) }     //Aktionen der Hexe anzeigen
-            3 -> { aktionenHeldinAnzeigen(hausdracheListe) }//Aktionen des Hausdrachen anzeigen
-        }
-
+        alleZauberAuflisten()
         //Auswahl des Zaubers
         println("Spielende mit Eingabe '99'. Wähle eine Zahl:")
 
@@ -160,6 +153,7 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
             if (alleHelden[i].heilPK <= 0) {
                 println("${alleHelden[i].name} ist tot.")
                 println("      + + +")
+                Utils.trennZeile()
                 alleHelden.removeAt(i)
                 break
             }
@@ -175,7 +169,7 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
 
 
         //Gegner mit Zufallsangriff auf random-Zauberin
-        entgegner.zufallsAngriff(entgegner, alleHelden.random())
+        if (spielen) {entgegner.zufallsAngriff(entgegner, alleHelden.random())}
 
 
         //check: falls heilPK <=0, dann Zauberin tot + aus Liste entfernen
@@ -186,6 +180,14 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
                 alleHelden.removeAt(i)
                 break
             }
+        }
+    }
+
+    private fun alleZauberAuflisten() {
+        when (inputHeld) {
+            1 -> { aktionenHeldinAnzeigen(zauberListe) }    //Aktionen der Zauberin anzeigen
+            2 -> { aktionenHeldinAnzeigen(hexenListe) }     //Aktionen der Hexe anzeigen
+            3 -> { aktionenHeldinAnzeigen(hausdracheListe) }//Aktionen des Hausdrachen anzeigen
         }
     }
 
@@ -232,8 +234,6 @@ open class Arena(var zauberin: Zauberin, var hexe: Hexe, var hausdrache: Hausdra
             System.exit(0)
         }
     }
-
-//___________________________________________________________________________________
 
 
 }

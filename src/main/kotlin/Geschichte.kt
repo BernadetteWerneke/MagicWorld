@@ -60,8 +60,27 @@ class Geschichte {
         for (i in 0 until alleGegner.size) {
             println("HaHa! Mein Name ist ${alleGegner[i].name} und ich bin ${alleGegner[i].heilPK} Punkte stark.")
         }
-        AllgemeineFkt.trennZeile()
+        Utils.trennZeile()
         println()
     }
-}
+
+        //Geschichte wird zu Ende erzählt bei Heldentod
+        fun HeldenTod() {
+            println(
+                "Alle Zauberinnen haben verloren. Sie kämpften verzweifelt,\n" +
+                        "aber sie konnten nichts ausrichten. Snape und Lestrange \n" +
+                        "triumphierten und übernahmen die Welt. Spielende!"
+            )
+        }
+
+        //Geschichtsende bei Tod des Bösewichts
+        fun GegnerTod() {
+            println(
+                "Der Bösewicht ist besiegt. Und so endet die Geschichte von den \n" +
+                        "drei Zauberinnen und dem düsteren Schurken. Und sie lebten \n" +
+                        "glücklich und zufrieden bis an ihr Lebensende."
+            )
+
+        }
+    }
 }
